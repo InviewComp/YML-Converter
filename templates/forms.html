@@ -1,44 +1,21 @@
-{% block content %}
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
 	<h1>Enter data</h1>
-	<form action="" method="post" novalidate>
+	<form class="form form-horizontal" role="form" method="POST" novalidate enctype="multipart/form-data">
 	{{ form.hidden_tag() }}
-		<p>
-		{{ form.username.label }}<br>
-		{{ form.username(size=20) }}
-		</p>
 
-		 <p>
-                {{ form.company.label }}<br>
-                {{ form.username(size=20) }}
-		 </p>
+		{{ wtf.form_field(form.username) }}
+	 	
+		{{ wtf.form_field(form.company) }}
+	 	
+		{{ wtf.form_field(form.url) }}
 
-		 <p>
-                {{ form.url.label }}<br>
-                {{ form.url(size=20) }}
-                </p>
+		{{ wtf.form_field(form.upload) }}
 
-		 <p>
-                {{ form.platform.label }}<br>
-                {{ form.username(size=20) }}
-		 </p>
-
-
-		<p>
-                {{ form.version.label }}<br>
-               	{{ form.username(size=20) }}
-		</p>
-		
-		<p>
-                {{ form.agency.label }}<br>
-                {{ form.username(size=20) }}
-		</p>
-
-		<p>
-		{{ form.email.label }}<br>
-		{{ form.username(size=20) }}
-		</p>
-
-		<p>{{form.submit}}</p>
+		{{ wtf.form_field(form.submit) }}
+	
 	</form>
 {% endblock %}
 

@@ -10,7 +10,6 @@
    }
 	a.add{
 		border: none;
-		background-image: url(Dark.jpg);
 		display: block;
 		width: 1536px;
 		height: 100px;
@@ -18,20 +17,20 @@
 	</style>
 <style>
    a.rollover {
-    background-image: url(p22.jpg); /* Путь к файлу с исходным рисунком  */
+	   background-image: url( "{{ url_for('static', filename='p22.jpg'}}" ); /* Путь к файлу с исходным рисунком  */
     display: block; /*  Рисунок как блочный элемент */
     width: 300px; /* Ширина рисунка */
     height: 108px; /*  Высота рисунка */
    }
    a.rollover:hover {
-    background-image: url(p11.jpg); /* Путь к файлу с заменяемым рисунком  */
+	   background-image: url( "{{ url_for('static', filename='p11.jpg' }}" ); /* Путь к файлу с заменяемым рисунком  */
    }
   </style>
 </head>
 <body>
 	<p style="color: red" align="center"><a href="#" class="add"></a></p>
 
-<p><img src="fit.gif"></p>
+	<p><img src=" {{ url_for('static', filename='fit.gif'}}"></p>
 
 	<p align="center" align=" bottom"><a href="24.html" class="rollover"> </a></p>
 	<style type="text/css">
