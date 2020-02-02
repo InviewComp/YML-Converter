@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, redirect, request
+from flask import Flask, render_template, flash, redirect, request, send_from_directory
 from form import SendForm, LoginForm, UploadForm
 from config import Config
 from flask_wtf.file import FileField, FileRequired
@@ -6,8 +6,10 @@ from werkzeug.utils import secure_filename
 import json
 import os
 from flask_bootstrap import Bootstrap
+from  xls2xml_bayes.bayes import parse
 
-app=Flask(__name__,static_folder="static_dir")
+
+app=Flask(__name__)
 app.config.from_object(Config)
 bootstrap = Bootstrap(app)
 
@@ -41,10 +43,9 @@ def send():
 
         #offer
         f = form.upload.data
-        filename = str(name)+'.xls'
+        filename = 'excel.xlsx'
         f.save(os.path.join('uploads/', filename))
-
-
+        parse()
         return redirect('/yml')
     
     return render_template('forms.html',title='Send', form=form)
@@ -77,7 +78,7 @@ def upload():
 
 @app.route('/yml', methods=['GET'])
 def yml():
-    return render_template('23.html')
+   return send_from_directory(directory='/home/grimpoteuthis/app/xls2xml_bayes', filename='res.yml')
 
-if __name__ == "__main__":
+if __name__ == "__main__" :
     app.run(host='0.0.0.0')
